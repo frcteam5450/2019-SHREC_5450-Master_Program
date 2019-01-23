@@ -8,6 +8,8 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import frc.robot.RobotMap;
 
@@ -25,6 +27,27 @@ public class Drivetrain extends Subsystem {
     frontLeftMotor = new WPI_TalonSRX(RobotMap.frontLeftMotor);
     backRightMotor = new WPI_TalonSRX(RobotMap.backRightMotor);
     frontRightMotor = new WPI_TalonSRX(RobotMap.frontRightMotor);
+  }
+
+  public void drive(double leftPower, double rightPower) {
+    backLeftMotor.set(-leftPower);
+    frontLeftMotor.set(-leftPower);
+    backRightMotor.set(rightPower);
+    frontRightMotor.set(rightPower);
+  }
+
+  public void strafe(double frontPower, double backPower) {
+    backLeftMotor.set(-backPower);
+    backRightMotor.set(-backPower);
+    frontLeftMotor.set(frontPower);
+    frontRightMotor.set(frontPower);
+  }
+
+  public void displayCurrent() {
+    SmartDashboard.putNumber("Back Left Motor", backLeftMotor.getOutputCurrent());
+    SmartDashboard.putNumber("Front Left Motor", frontLeftMotor.getOutputCurrent());
+    SmartDashboard.putNumber("Back Right Motor", backRightMotor.getOutputCurrent());
+    SmartDashboard.putNumber("Front Right Motor", frontRightMotor.getOutputCurrent());
   }
 
   @Override
