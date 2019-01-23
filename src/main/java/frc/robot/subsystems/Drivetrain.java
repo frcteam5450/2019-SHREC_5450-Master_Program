@@ -7,9 +7,10 @@
 
 package frc.robot.subsystems;
 
+import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-
+import frc.robot.commands.TeleopDrive;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import frc.robot.RobotMap;
 
@@ -21,12 +22,16 @@ public class Drivetrain extends Subsystem {
   WPI_TalonSRX frontLeftMotor;
   WPI_TalonSRX backRightMotor;
   WPI_TalonSRX frontRightMotor;
+
+  ADXRS450_Gyro gyro;
   
-  Drivetrain() {
+  public Drivetrain() {
     backLeftMotor = new WPI_TalonSRX(RobotMap.backLeftMotor);
     frontLeftMotor = new WPI_TalonSRX(RobotMap.frontLeftMotor);
     backRightMotor = new WPI_TalonSRX(RobotMap.backRightMotor);
     frontRightMotor = new WPI_TalonSRX(RobotMap.frontRightMotor);
+
+    gyro = new ADXRS450_Gyro();
   }
 
   public void drive(double leftPower, double rightPower) {
@@ -53,6 +58,6 @@ public class Drivetrain extends Subsystem {
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
-    // setDefaultCommand(new MySpecialCommand());
+    setDefaultCommand(new TeleopDrive());
   }
 }

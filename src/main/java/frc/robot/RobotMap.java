@@ -24,8 +24,16 @@ public class RobotMap {
   // public static int rangefinderPort = 1;
   // public static int rangefinderModule = 1;
 
+  //Motor CAN ID's
   public static int backLeftMotor = 0;
   public static int frontLeftMotor = 1;
   public static int backRightMotor = 2;
   public static int frontRightMotor = 3;
+
+  //Controller Ports
+  public static int controller1 = 0;
+  public static int controller2 = 1;
+
+  //Motor Power Multiplier
+  public static double power = .5;
 }
