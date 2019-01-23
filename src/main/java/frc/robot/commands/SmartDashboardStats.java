@@ -9,20 +9,11 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
-import frc.robot.RobotMap;
-import edu.wpi.first.wpilibj.XboxController;
-import edu.wpi.first.wpilibj.GenericHID.Hand;
-import frc.robot.Functions;
 
-public class TeleopDrive extends Command {
-  XboxController driver1;
-  XboxController driver2;
-  
-  public TeleopDrive() {
+public class SmartDashboardStats extends Command {
+  public SmartDashboardStats() {
     // Use requires() here to declare subsystem dependencies
     requires(Robot.drivetrain);
-    driver1 = new XboxController(RobotMap.controller1);
-    driver2 = new XboxController(RobotMap.controller2);
   }
 
   // Called just before this Command runs the first time
@@ -33,19 +24,7 @@ public class TeleopDrive extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    double leftPower = Functions.returnGreatestAbs(driver1.getY(Hand.kLeft), driver2.getY(Hand.kLeft)) * RobotMap.power;
-    double rightPower = Functions.returnGreatestAbs(driver1.getY(Hand.kRight), driver2.getY(Hand.kRight)) * RobotMap.power;
-
-    double frontPower = Functions.returnGreatestAbs(driver1.getX(Hand.kLeft), driver2.getX(Hand.kLeft)) * RobotMap.power;
-    double backPower = Functions.returnGreatestAbs(driver1.getX(Hand.kRight), driver2.getX(Hand.kRight)) * RobotMap.power;
-
-    if (Math.abs(leftPower) > Math.abs(frontPower) && Math.abs(rightPower) > Math.abs(frontPower)) {
-      Robot.drivetrain.drive(leftPower, rightPower);
-    }
-    else
-      Robot.drivetrain.strafe(frontPower, frontPower);
-      
-    
+    Robot.drivetrain.displayCurrent();
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -57,13 +36,11 @@ public class TeleopDrive extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.drivetrain.drive(0, 0);
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
-    end();
   }
 }
