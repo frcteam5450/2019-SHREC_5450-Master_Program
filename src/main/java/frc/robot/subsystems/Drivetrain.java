@@ -15,22 +15,27 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import frc.robot.RobotMap;
 
 /**
- * Add your docs here.
+ * This is the drivetrain subsystem. Consists of the four drive motors, the drive mounted encoder, and the gryoscope mounted on the roborio.
+ * Methods for normal drive, strafing, and displaying motor current.
  */
 public class Drivetrain extends Subsystem {
+  //Motor Controller Declarations
   WPI_TalonSRX backLeftMotor;
   WPI_TalonSRX frontLeftMotor;
   WPI_TalonSRX backRightMotor;
   WPI_TalonSRX frontRightMotor;
 
+  //gyroscope declaration
   ADXRS450_Gyro gyro;
   
   public Drivetrain() {
+    //motor Definitions
     backLeftMotor = new WPI_TalonSRX(RobotMap.backLeftMotor);
     frontLeftMotor = new WPI_TalonSRX(RobotMap.frontLeftMotor);
     backRightMotor = new WPI_TalonSRX(RobotMap.backRightMotor);
     frontRightMotor = new WPI_TalonSRX(RobotMap.frontRightMotor);
 
+    //gyroscope definition
     gyro = new ADXRS450_Gyro();
   }
 
