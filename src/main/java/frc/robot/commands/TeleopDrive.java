@@ -40,18 +40,23 @@ public class TeleopDrive extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
+    //gets input from controller for normal driving
     double leftPower = Functions.returnGreatestAbs(driver1.getY(Hand.kLeft), driver2.getY(Hand.kLeft)) * RobotMap.power;
     double rightPower = Functions.returnGreatestAbs(driver1.getY(Hand.kRight), driver2.getY(Hand.kRight)) * RobotMap.power;
 
+    //gets input from controller for strafing
     double frontPower = Functions.returnGreatestAbs(driver1.getX(Hand.kLeft), driver2.getX(Hand.kLeft)) * RobotMap.power;
     double backPower = Functions.returnGreatestAbs(driver1.getX(Hand.kRight), driver2.getX(Hand.kRight)) * RobotMap.power;
 
+    //rear motor power calculations
     double backLeftPower = leftPower - backPower;
     double backRightPower = rightPower + backPower;
 
+    //forward motor power calculations
     double frontLeftPower = leftPower + frontPower;
     double frontRightPower = rightPower - frontPower;
 
+    //pushed power variables to motors
     Robot.drivetrain.FourWheelDrive(backLeftPower, frontLeftPower, backRightPower, frontRightPower);
     
   }
