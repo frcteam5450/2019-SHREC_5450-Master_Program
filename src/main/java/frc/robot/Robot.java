@@ -5,6 +5,22 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
+/**
+ * Please Add your name here if you contributed to this class.
+ * Contributers:
+ * Evan Garrison
+ */
+
+ /**
+  * January 25, 2019 | Version 0.1.0
+  * 
+  * -Drivetrain Subsystem for controlling drive motors
+  * -TeleopDrive Command for driver control of drivetrain
+  * -SmartDashboardStats Command displays statistics from subsystems on SDB.
+  * 
+  * **THIS VERSION IS UNTESTED**
+  */
+
 package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
@@ -13,8 +29,7 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.commands.*;
-import frc.robot.subsystems.Drivetrain;
-//import frc.robot.subsystems.ExampleSubsystem;
+import frc.robot.subsystems.*;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -25,7 +40,10 @@ import frc.robot.subsystems.Drivetrain;
  */
 public class Robot extends TimedRobot {
   public static Drivetrain drivetrain = new Drivetrain();
+  public static CustomCompressor compressor = new CustomCompressor(RobotMap.compressorRelay, RobotMap.pressureSwitchPCMID);
   public static OI m_oi;
+
+  Command SDBStats;
 
   Command m_autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
@@ -37,9 +55,11 @@ public class Robot extends TimedRobot {
   @Override
   public void robotInit() {
     m_oi = new OI();
+    SDBStats = new SmartDashboardStats();
     //m_chooser.setDefaultOption("Default Auto", new ExampleCommand());
     // chooser.addOption("My Auto", new MyAutoCommand());
     SmartDashboard.putData("Auto mode", m_chooser);
+    SDBStats.start();
   }
 
   /**

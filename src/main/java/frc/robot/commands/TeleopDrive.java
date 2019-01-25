@@ -5,6 +5,12 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
+/**
+ * Please Add your name here if you contributed to this class.
+ * Contributers:
+ * Evan Garrison
+ */
+
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
@@ -56,7 +62,7 @@ public class TeleopDrive extends Command {
     double frontLeftPower = leftPower + frontPower;
     double frontRightPower = rightPower - frontPower;
 
-    //pushed power variables to motors
+    //pushes power variables to motors
     Robot.drivetrain.FourWheelDrive(backLeftPower, frontLeftPower, backRightPower, frontRightPower);
     
   }
@@ -64,6 +70,7 @@ public class TeleopDrive extends Command {
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
+    // We always want this command to run, so it should never be finished.
     return false;
   }
 

@@ -5,6 +5,12 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
+/**
+ * Please Add your name here if you contributed to this class.
+ * Contributers:
+ * Evan Garrison
+ */
+
 package frc.robot;
 
 /**
@@ -36,4 +42,8 @@ public class RobotMap {
 
   //Motor Power Multiplier
   public static double power = .5;
+
+  //Compressor Relay Channel
+  public static int compressorRelay = 0;
+  public static int pressureSwitchPCMID = 0;
 }

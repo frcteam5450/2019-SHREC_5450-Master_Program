@@ -5,12 +5,25 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
+/**
+ * Please Add your name here if you contributed to this class.
+ * Contributers:
+ * Evan Garrison
+ */
+
 package frc.robot;
 
 /**
- * Add your docs here.
+ * These are miscellaneous functions that may or may not be useful.
+ * Please note the usage of the function above it in a comment.
  */
 public class Functions {
+
+    /**
+     * Takes two doubles 'a' and 'b' and returns the double with the greatest absolute value.
+     * If a == b, returns 'b'.
+     * ie: if a == -10 and b == 5, this function returns '-10'.
+     */
     public static double returnGreatestAbs(double a, double b) {
         double _a = Math.abs(a);
         double _b = Math.abs(b);

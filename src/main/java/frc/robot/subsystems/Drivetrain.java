@@ -5,6 +5,12 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
+/**
+ * Please Add your name here if you contributed to this class.
+ * Contributers:
+ * Evan Garrison
+ */
+
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
