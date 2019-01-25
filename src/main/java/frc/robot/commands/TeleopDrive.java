@@ -14,13 +14,20 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.GenericHID.Hand;
 import frc.robot.Functions;
 
+/* 
+ * Driver Control command, uses input from xbox controllers to drive the robot. Currently, the robot can't drive. Sorry.
+ */
 public class TeleopDrive extends Command {
+  
+  //Controller declarations
   XboxController driver1;
   XboxController driver2;
   
   public TeleopDrive() {
-    // Use requires() here to declare subsystem dependencies
+    // This command requires the Drivetrain to run! Obviously...
     requires(Robot.drivetrain);
+
+    //Controller definitions
     driver1 = new XboxController(RobotMap.controller1);
     driver2 = new XboxController(RobotMap.controller2);
   }
@@ -39,12 +46,13 @@ public class TeleopDrive extends Command {
     double frontPower = Functions.returnGreatestAbs(driver1.getX(Hand.kLeft), driver2.getX(Hand.kLeft)) * RobotMap.power;
     double backPower = Functions.returnGreatestAbs(driver1.getX(Hand.kRight), driver2.getX(Hand.kRight)) * RobotMap.power;
 
-    if (Math.abs(leftPower) > Math.abs(frontPower) && Math.abs(rightPower) > Math.abs(frontPower)) {
-      Robot.drivetrain.drive(leftPower, rightPower);
-    }
-    else
-      Robot.drivetrain.strafe(frontPower, frontPower);
-      
+    double backLeftPower = leftPower - backPower;
+    double backRightPower = rightPower + backPower;
+
+    double frontLeftPower = leftPower + frontPower;
+    double frontRightPower = rightPower - frontPower;
+
+    Robot.drivetrain.FourWheelDrive(backLeftPower, frontLeftPower, backRightPower, frontRightPower);
     
   }
 
@@ -57,6 +65,7 @@ public class TeleopDrive extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
+    //It's probably a good idea to stop the motors when the command's done.
     Robot.drivetrain.drive(0, 0);
   }
 
@@ -64,6 +73,7 @@ public class TeleopDrive extends Command {
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
+    //Calls end() because we want it to do the same thing as end().
     end();
   }
 }

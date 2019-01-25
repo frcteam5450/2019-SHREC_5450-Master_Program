@@ -39,6 +39,7 @@ public class Drivetrain extends Subsystem {
     gyro = new ADXRS450_Gyro();
   }
 
+  //Normal drive method
   public void drive(double leftPower, double rightPower) {
     backLeftMotor.set(-leftPower);
     frontLeftMotor.set(-leftPower);
@@ -46,6 +47,7 @@ public class Drivetrain extends Subsystem {
     frontRightMotor.set(rightPower);
   }
 
+  //Method for fancy strafing!
   public void strafe(double frontPower, double backPower) {
     backLeftMotor.set(-backPower);
     backRightMotor.set(-backPower);
@@ -53,6 +55,15 @@ public class Drivetrain extends Subsystem {
     frontRightMotor.set(frontPower);
   }
 
+  //Method for manual control of all four motors
+  public void FourWheelDrive(double backLeftPower, double frontLeftPower, double backRightPower, double frontRightPower) {
+    backLeftMotor.set(-backLeftPower);
+    backRightMotor.set(-backRightPower);
+    frontLeftMotor.set(frontLeftPower);
+    frontRightMotor.set(frontRightPower);
+  }
+
+  //Method for displaying motor current draw on SDB
   public void displayCurrent() {
     SmartDashboard.putNumber("Back Left Motor", backLeftMotor.getOutputCurrent());
     SmartDashboard.putNumber("Front Left Motor", frontLeftMotor.getOutputCurrent());
@@ -62,7 +73,7 @@ public class Drivetrain extends Subsystem {
 
   @Override
   public void initDefaultCommand() {
-    // Set the default command for a subsystem here.
+    //Default Command is driver controller of robot.
     setDefaultCommand(new TeleopDrive());
   }
 }
