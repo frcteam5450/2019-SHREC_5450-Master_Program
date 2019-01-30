@@ -46,4 +46,10 @@ public class RobotMap {
   //Compressor Relay Channel
   public static int compressorRelay = 0;
   public static int pressureSwitchPCMID = 0;
+
+/**
+ * Constants for vision tracking
+ */
+
+ public static String axisCamera = "10.54.50.11";
 }
