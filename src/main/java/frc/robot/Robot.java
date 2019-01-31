@@ -11,6 +11,15 @@
  * Evan Garrison
  */
 
+/**
+ * January 30, 2019 | Version 0.1.1 | Confirmed Working Drivetrain Code
+ * 
+ * -Fixed Drivetrain after testing
+ * -Fixed How the robot displays stats on SDB
+ * 
+ * **COMPRESSOR CODE IS STILL UNTESTED**
+ */
+
  /**
   * January 25, 2019 | Version 0.1.0
   * 
@@ -72,6 +81,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotPeriodic() {
+    drivetrain.displayCurrent();
   }
 
   /**

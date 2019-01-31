@@ -47,26 +47,26 @@ public class Drivetrain extends Subsystem {
 
   //Normal drive method
   public void drive(double leftPower, double rightPower) {
-    backLeftMotor.set(-leftPower);
-    frontLeftMotor.set(-leftPower);
-    backRightMotor.set(rightPower);
-    frontRightMotor.set(rightPower);
+    backLeftMotor.set(leftPower);
+    frontLeftMotor.set(leftPower);
+    backRightMotor.set(-rightPower);
+    frontRightMotor.set(-rightPower);
   }
 
   //Method for fancy strafing!
   public void strafe(double frontPower, double backPower) {
     backLeftMotor.set(-backPower);
-    backRightMotor.set(-backPower);
-    frontLeftMotor.set(frontPower);
+    backRightMotor.set(backPower);
+    frontLeftMotor.set(-frontPower);
     frontRightMotor.set(frontPower);
   }
 
   //Method for manual control of all four motors
   public void FourWheelDrive(double backLeftPower, double frontLeftPower, double backRightPower, double frontRightPower) {
-    backLeftMotor.set(-backLeftPower);
+    backLeftMotor.set(backLeftPower);
     backRightMotor.set(-backRightPower);
     frontLeftMotor.set(frontLeftPower);
-    frontRightMotor.set(frontRightPower);
+    frontRightMotor.set(-frontRightPower);
   }
 
   //Method for displaying motor current draw on SDB
