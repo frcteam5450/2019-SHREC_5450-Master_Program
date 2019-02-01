@@ -64,11 +64,9 @@ public class Robot extends TimedRobot {
   @Override
   public void robotInit() {
     m_oi = new OI();
-    SDBStats = new SmartDashboardStats();
     //m_chooser.setDefaultOption("Default Auto", new ExampleCommand());
     // chooser.addOption("My Auto", new MyAutoCommand());
     SmartDashboard.putData("Auto mode", m_chooser);
-    SDBStats.start();
   }
 
   /**
@@ -88,6 +86,9 @@ public class Robot extends TimedRobot {
    * This function is called once each time the robot enters Disabled mode.
    * You can use it to reset any subsystem information you want to clear when
    * the robot is disabled.
+   * 
+   * This is freakin' awesome I wish we had this last year
+   * -Evan
    */
   @Override
   public void disabledInit() {

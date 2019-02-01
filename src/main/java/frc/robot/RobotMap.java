@@ -31,10 +31,10 @@ public class RobotMap {
   // public static int rangefinderModule = 1;
 
   //Motor CAN ID's
-  public static int backLeftMotor = 0;
-  public static int frontLeftMotor = 1;
-  public static int backRightMotor = 2;
-  public static int frontRightMotor = 3;
+  public static int backLeftMotor = 4;
+  public static int frontLeftMotor = 5;
+  public static int backRightMotor = 6;
+  public static int frontRightMotor = 7;
 
   //Controller Ports
   public static int controller1 = 0;
