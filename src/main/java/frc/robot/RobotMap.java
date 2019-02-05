@@ -41,7 +41,7 @@ public class RobotMap {
   public static int controller2 = 1;
 
   //Motor Power Multiplier
-  public static double power = .65;
+  public static double power = .95;
 
   //Compressor Relay Channel
   public static int compressorRelay = 0;
