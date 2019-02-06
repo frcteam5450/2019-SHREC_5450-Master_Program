@@ -63,10 +63,10 @@ public class Drivetrain extends Subsystem {
 
   //Method for manual control of all four motors
   public void FourWheelDrive(double backLeftPower, double frontLeftPower, double backRightPower, double frontRightPower) {
-    backLeftMotor.set(-backLeftPower);
+    backLeftMotor.set(backLeftPower);
     backRightMotor.set(-backRightPower);
     frontLeftMotor.set(frontLeftPower);
-    frontRightMotor.set(frontRightPower);
+    frontRightMotor.set(-frontRightPower);
   }
 
   //Method for displaying motor current draw on SDB
