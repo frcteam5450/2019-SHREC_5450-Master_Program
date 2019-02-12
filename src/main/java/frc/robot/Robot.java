@@ -49,7 +49,7 @@ import frc.robot.subsystems.*;
  */
 public class Robot extends TimedRobot {
   public static Drivetrain drivetrain = new Drivetrain();
-  public static CustomCompressor compressor = new CustomCompressor(RobotMap.compressorRelay, RobotMap.pressureSwitchPCMID);
+  public static CustomCompressor compressor = new CustomCompressor(RobotMap.compressorRelay, RobotMap.primaryPCMID);
   public static OI m_oi;
 
   Command SDBStats;

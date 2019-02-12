@@ -35,6 +35,8 @@ public class RobotMap {
   public static int frontLeftMotor = 1;
   public static int backRightMotor = 2;
   public static int frontRightMotor = 3;
+  public static int winchMotor1 = 4;
+  public static int winchMotor2 = 5;
 
   //Controller Ports
   public static int controller1 = 0;
@@ -45,5 +47,9 @@ public class RobotMap {
 
   //Compressor Relay Channel
   public static int compressorRelay = 0;
-  public static int pressureSwitchPCMID = 0;
+  public static int primaryPCMID = 0;
+  public static int upperPCMID = 1;
+
+  //Solenoids
+  public static int discBrake = 0;
 }
