@@ -13,6 +13,8 @@
 
 package frc.robot;
 
+import java.net.*;
+
 /**
  * The RobotMap is a mapping from the ports sensors and actuators are wired into
  * to a variable name. This provides flexibility changing wiring, makes checking
@@ -41,7 +43,7 @@ public class RobotMap {
   public static int controller2 = 1;
 
   //Motor Power Multiplier
-  public static double power = .75;
+  public static double power = .2;
 
   //Compressor Relay Channel
   public static int compressorRelay = 0;
@@ -51,5 +53,7 @@ public class RobotMap {
  * Constants for vision tracking
  */
 
- public static String axisCamera = "10.54.50.11";
+ public static String raspberryPiIP = "10.54.50.19";
+ public static String UDPServerIP = "10.54.50.2";
+ public static int serverPort = 5800;
 }

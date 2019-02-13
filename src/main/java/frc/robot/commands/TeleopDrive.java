@@ -18,7 +18,7 @@ import frc.robot.Robot;
 import frc.robot.RobotMap;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.GenericHID.Hand;
-import frc.robot.Functions;
+import frc.robot.RandomCrap;
 
 /* 
  * Driver Control command, uses input from xbox controllers to drive the robot. Currently, the robot can't drive. Sorry.
@@ -47,12 +47,12 @@ public class TeleopDrive extends Command {
   @Override
   protected void execute() {
     //gets input from controller for normal driving
-    double leftPower = Functions.returnGreatestAbs(driver1.getY(Hand.kLeft), driver2.getY(Hand.kLeft)) * RobotMap.power;
-    double rightPower = Functions.returnGreatestAbs(driver1.getY(Hand.kRight), driver2.getY(Hand.kRight)) * RobotMap.power;
+    double leftPower = RandomCrap.returnGreatestAbs(driver1.getY(Hand.kLeft), driver2.getY(Hand.kLeft)) * RobotMap.power;
+    double rightPower = RandomCrap.returnGreatestAbs(driver1.getY(Hand.kRight), driver2.getY(Hand.kRight)) * RobotMap.power;
 
     //gets input from controller for strafing
-    double frontPower = Functions.returnGreatestAbs(driver1.getX(Hand.kLeft), driver2.getX(Hand.kLeft)) * RobotMap.power;
-    double backPower = Functions.returnGreatestAbs(driver1.getX(Hand.kRight), driver2.getX(Hand.kRight)) * RobotMap.power;
+    double frontPower = RandomCrap.returnGreatestAbs(driver1.getX(Hand.kLeft), driver2.getX(Hand.kLeft)) * RobotMap.power;
+    double backPower = RandomCrap.returnGreatestAbs(driver1.getX(Hand.kRight), driver2.getX(Hand.kRight)) * RobotMap.power;
 
     //rear motor power calculations
     double backLeftPower = leftPower + backPower;

@@ -80,6 +80,6 @@ public class Drivetrain extends Subsystem {
   @Override
   public void initDefaultCommand() {
     //Default Command is driver controller of robot.
-    setDefaultCommand(new TeleopDrive());
+    //setDefaultCommand(new TeleopDrive());
   }
 }
