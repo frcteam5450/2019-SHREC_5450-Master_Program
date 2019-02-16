@@ -14,6 +14,7 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.commands.UpdateCompressor;
 import edu.wpi.first.wpilibj.Relay;
 import edu.wpi.first.wpilibj.Relay.Value;
@@ -52,6 +53,10 @@ public class CustomCompressor extends Subsystem {
   // Returns true if the pressure is lower than ~120 PSI
   public boolean pressureLow() {
     return pressureSwitch.enabled();
+  }
+
+  public void displayStats() {
+    SmartDashboard.putBoolean("Compressor Enabled?", pressureLow());
   }
 
   @Override

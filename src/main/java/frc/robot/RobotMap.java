@@ -20,15 +20,8 @@ package frc.robot;
  * floating around.
  */
 public class RobotMap {
-  // For example to map the left and right motors, you could define the
-  // following variables to use with your drivetrain subsystem.
-  // public static int leftMotor = 1;
-  // public static int rightMotor = 2;
-
-  // If you are using multiple modules, make sure to define both the port
-  // number and the module. For example you with a rangefinder:
-  // public static int rangefinderPort = 1;
-  // public static int rangefinderModule = 1;
+  // This is where we'll store most of our variables like motor power, and CAN ID's. If you need to change
+  // motor power, change the motor power variables. Anyone can do it!
 
   //Motor CAN ID's
   public static int backLeftMotor = 0;
@@ -37,19 +30,46 @@ public class RobotMap {
   public static int frontRightMotor = 3;
   public static int winchMotor1 = 4;
   public static int winchMotor2 = 5;
+  public static int cargoIntakeMotor = 6;
 
   //Controller Ports
   public static int controller1 = 0;
   public static int controller2 = 1;
 
-  //Motor Power Multiplier
-  public static double power = .65;
+  //Motor Power Multipliers
+  public static double drivePower = .65;
+  public static double winchPower = .75;
+  public static double cargoIntakePower = .5;
 
   //Compressor Relay Channel
   public static int compressorRelay = 0;
+
+  //PCM CAN ID's
   public static int primaryPCMID = 0;
   public static int upperPCMID = 1;
 
   //Solenoids
-  public static int discBrake = 0;
+  public static int discBrake = 2;
+  public static int cargoLiftUp = 0;
+  public static int cargoLiftDown = 1;
+  public static int hatchGrabber = 2;
+
+  //Controller Mapping
+  public static int A = 1;
+  public static int B = 2;
+  public static int X = 3;
+  public static int Y = 4;
+  public static int LB = 5;
+  public static int RB = 6;
+  public static int select = 7;
+  public static int start = 8;
+  public static int LS = 9;
+  public static int RS = 10;
+
+  //Winch Control Loop
+  public static double countsPerInch = 1500;
+  public static double proportionControlValue = .001;
+  public static double lowerCargoPos = 36;
+  public static double middleCargoPos = 52;
+  public static double upperCargoPos = 84;
 }

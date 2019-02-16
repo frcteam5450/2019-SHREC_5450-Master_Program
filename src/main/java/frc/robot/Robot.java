@@ -12,6 +12,19 @@
  */
 
 /**
+ * Febuary 13, 2019 | Version 0.1.3 | **Version in Process**
+ * 
+ * -removed SDBStats cause it didn't freakin' work, added methods for SDBStats to robotperiodic.
+ */
+
+/**
+ * Febuary 12, 2019 | Version 0.1.2 | Confirmed working Compressor Code
+ * 
+ * -modified motor power
+ * -temporarily added solenoid for testing, but was removed.
+ */
+
+/**
  * January 30, 2019 | Version 0.1.1 | Confirmed Working Drivetrain Code
  * 
  * -Fixed Drivetrain after testing
@@ -33,10 +46,12 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.robot.OI;
 import frc.robot.commands.*;
 import frc.robot.subsystems.*;
 
@@ -50,9 +65,10 @@ import frc.robot.subsystems.*;
 public class Robot extends TimedRobot {
   public static Drivetrain drivetrain = new Drivetrain();
   public static CustomCompressor compressor = new CustomCompressor(RobotMap.compressorRelay, RobotMap.primaryPCMID);
+  public static Winch winch = new Winch();
+  public static Intake intake = new Intake();
+  
   public static OI m_oi;
-
-  Command SDBStats;
 
   Command m_autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
@@ -64,11 +80,9 @@ public class Robot extends TimedRobot {
   @Override
   public void robotInit() {
     m_oi = new OI();
-    SDBStats = new SmartDashboardStats();
     //m_chooser.setDefaultOption("Default Auto", new ExampleCommand());
     // chooser.addOption("My Auto", new MyAutoCommand());
     SmartDashboard.putData("Auto mode", m_chooser);
-    SDBStats.start();
   }
 
   /**
@@ -81,7 +95,10 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotPeriodic() {
-    drivetrain.displayCurrent();
+    drivetrain.displayStats();
+    winch.displayStats();
+    intake.displayStats();
+    compressor.displayStats();
   }
 
   /**
@@ -91,6 +108,9 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void disabledInit() {
+    intake.runCargoIntake(0);
+    drivetrain.drive(0, 0);
+    winch.runWinch(0);
   }
 
   @Override
@@ -151,6 +171,21 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
     Scheduler.getInstance().run();
+
+    /*if (OI.driveController.getBumper(Hand.kLeft)) {
+      winch.releaseBrake();
+      winch.runWinch(.25);
+    }
+    else if (OI.driveController.getBumper(Hand.kRight)) {
+      winch.releaseBrake();
+      winch.runWinch(-RobotMap.winchPower);
+    }
+    else {
+      winch.runWinch(0);
+      winch.brake();
+    }*/
+
+    //Robot.intake.runCargoIntake(.5 * (OI.driveController.getTriggerAxis(Hand.kLeft) - OI.driveController.getTriggerAxis(Hand.kRight)));
   }
 
   /**

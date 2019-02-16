@@ -13,7 +13,7 @@
 
 package frc.robot.subsystems;
 
-import edu.wpi.first.wpilibj.ADXRS450_Gyro;
+import edu.wpi.first.wpilibj.ADXRS450_Gyro; 
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.commands.TeleopDrive;
@@ -70,7 +70,7 @@ public class Drivetrain extends Subsystem {
   }
 
   //Method for displaying motor current draw on SDB
-  public void displayCurrent() {
+  public void displayStats() {
     SmartDashboard.putNumber("Back Left Motor", backLeftMotor.getOutputCurrent());
     SmartDashboard.putNumber("Front Left Motor", frontLeftMotor.getOutputCurrent());
     SmartDashboard.putNumber("Back Right Motor", backRightMotor.getOutputCurrent());

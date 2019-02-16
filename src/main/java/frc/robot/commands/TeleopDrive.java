@@ -16,6 +16,7 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 import frc.robot.RobotMap;
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.GenericHID.Hand;
 import frc.robot.Functions;
@@ -46,25 +47,27 @@ public class TeleopDrive extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    //gets input from controller for normal driving
-    double leftPower = Functions.returnGreatestAbs(driver1.getY(Hand.kLeft), driver2.getY(Hand.kLeft)) * RobotMap.power;
-    double rightPower = Functions.returnGreatestAbs(driver1.getY(Hand.kRight), driver2.getY(Hand.kRight)) * RobotMap.power;
+    if (DriverStation.getInstance().isOperatorControl()) {
 
-    //gets input from controller for strafing
-    double frontPower = Functions.returnGreatestAbs(driver1.getX(Hand.kLeft), driver2.getX(Hand.kLeft)) * RobotMap.power;
-    double backPower = Functions.returnGreatestAbs(driver1.getX(Hand.kRight), driver2.getX(Hand.kRight)) * RobotMap.power;
+      //gets input from controller for normal driving
+      double leftPower = Functions.returnGreatestAbs(driver1.getY(Hand.kLeft), driver2.getY(Hand.kLeft)) * RobotMap.drivePower;
+      double rightPower = Functions.returnGreatestAbs(driver1.getY(Hand.kRight), driver2.getY(Hand.kRight)) * RobotMap.drivePower;
 
-    //rear motor power calculations
-    double backLeftPower = leftPower + backPower;
-    double backRightPower = rightPower - backPower;
+      //gets input from controller for strafing
+      double frontPower = Functions.returnGreatestAbs(driver1.getX(Hand.kLeft), driver2.getX(Hand.kLeft));
+      double backPower = Functions.returnGreatestAbs(driver1.getX(Hand.kRight), driver2.getX(Hand.kRight));
 
-    //forward motor power calculations
-    double frontLeftPower = leftPower - frontPower;
-    double frontRightPower = rightPower + frontPower;
+      //rear motor power calculations
+      double backLeftPower = leftPower + backPower;
+      double backRightPower = rightPower - backPower;
 
-    //pushes power variables to motors
-    Robot.drivetrain.FourWheelDrive(backLeftPower, frontLeftPower, backRightPower, frontRightPower);
-    
+      //forward motor power calculations
+      double frontLeftPower = leftPower - frontPower;
+      double frontRightPower = rightPower + frontPower;
+
+      //pushes power variables to motors
+      Robot.drivetrain.FourWheelDrive(backLeftPower, frontLeftPower, backRightPower, frontRightPower);
+    }
   }
 
   // Make this return true when this Command no longer needs to run execute()

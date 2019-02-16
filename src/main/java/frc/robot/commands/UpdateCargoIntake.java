@@ -5,21 +5,22 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-/**
- * Please Add your name here if you contributed to this class.
- * Contributers:
- * Evan Garrison
- */
-
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
+import frc.robot.RobotMap;
 
-public class SmartDashboardStats extends Command {
-  public SmartDashboardStats() {
-    // Use requires() here to declare subsystem dependencies
-    requires(Robot.drivetrain);
+public class UpdateCargoIntake extends Command {
+
+  XboxController controller;
+
+  public UpdateCargoIntake() {
+    requires(Robot.intake);
+    controller = new XboxController(RobotMap.controller2);
   }
 
   // Called just before this Command runs the first time
@@ -30,7 +31,12 @@ public class SmartDashboardStats extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.drivetrain.displayCurrent();
+    //
+    if (DriverStation.getInstance().isOperatorControl()) {
+      double power = (controller.getTriggerAxis(Hand.kLeft) - controller.getTriggerAxis(Hand.kRight)) * RobotMap.cargoIntakePower;
+
+      Robot.intake.runCargoIntake(power);
+    }
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -42,6 +48,7 @@ public class SmartDashboardStats extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
+    Robot.intake.runCargoIntake(0);
   }
 
   // Called when another command which requires one or more of the same
