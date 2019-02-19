@@ -12,6 +12,10 @@
  */
 
 /**
+ * February 18, 2019 | Version 0.1.5 | Bag Day Code
+ */
+
+/**
  * Febuary 13, 2019 | Version 0.1.3 | **Version in Process**
  * 
  * -removed SDBStats cause it didn't freakin' work, added methods for SDBStats to robotperiodic.
@@ -52,6 +56,7 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.CameraServer;
+import edu.wpi.first.wpilibj.DriverStation;
 import frc.robot.OI;
 import frc.robot.commands.*;
 import frc.robot.subsystems.*;
@@ -68,6 +73,7 @@ public class Robot extends TimedRobot {
   public static CustomCompressor compressor = new CustomCompressor(RobotMap.compressorRelay, RobotMap.primaryPCMID);
   public static Winch winch = new Winch();
   public static Intake intake = new Intake();
+  public static PDP pdp = new PDP();
   
   CameraServer leftCamera;
   //CameraServer rightCamera;
@@ -104,6 +110,8 @@ public class Robot extends TimedRobot {
     winch.displayStats();
     intake.displayStats();
     compressor.displayStats();
+    pdp.displayStats();
+    Functions.reportRobotStatus();
   }
 
   /**

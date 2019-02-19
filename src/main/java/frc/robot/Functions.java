@@ -13,6 +13,10 @@
 
 package frc.robot;
 
+import java.sql.Driver;
+
+import edu.wpi.first.wpilibj.DriverStation;
+
 /**
  * These are miscellaneous functions that may or may not be useful.
  * Please note the usage of the function above it in a comment.
@@ -33,5 +37,28 @@ public class Functions {
         
         else
             return b;
+    }
+
+    public static void reportRobotStatus() {
+        String status = "Browned Out: ";
+        if (DriverStation.getInstance().isBrownedOut()) status = status + "true.\n";
+        else status = status + "false.\n";
+
+        status = status + "Enabled: ";
+        if (DriverStation.getInstance().isEnabled()) status = status + "true.\n";
+        else status = status + "false.\n";
+
+        status = status + "Mode: ";
+        if (DriverStation.getInstance().isEnabled())
+            if (DriverStation.getInstance().isOperatorControl()) status = status + "Teleop.\n";
+            else status = status + "Autonomous.\n";
+        else status = status + "Disabled.\n";
+
+        status = status + "Recommendation: ";
+
+        if (DriverStation.getInstance().isBrownedOut()) status = status + "Check Battery.\n";
+        else status = status + "none.\n";
+        
+        
     }
 }
