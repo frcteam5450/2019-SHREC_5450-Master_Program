@@ -37,7 +37,7 @@ public class UpdateWinch extends Command {
     double offset = Robot.winch.getRawSetPosition() - Robot.winch.getRawPosition();
     double power = offset * RobotMap.proportionControlValue;
     
-    if (Math.abs(Robot.winch.getSpeed()) < 0) {
+    if (Math.abs(Robot.winch.getSpeed()) < RobotMap.stopSpeed) {
       Robot.winch.runWinch(0);
       Robot.winch.brake();
     }
