@@ -70,7 +70,7 @@ public class RobotMap {
   public static double countsPerInch = 1500;
   public static double proportionControlValue = .0001;
   public static double stopSpeed = 100;
-  public static double lowerCargoPos = 1;
+  public static double lowerCargoPos = 0;
   public static double middleCargoPos = 25;
-  public static double upperCargoPos = 45;
+  public static double upperCargoPos = 47;
 }

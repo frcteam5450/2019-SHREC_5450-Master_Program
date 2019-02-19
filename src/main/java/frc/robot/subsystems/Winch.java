@@ -107,6 +107,6 @@ public class Winch extends Subsystem {
 
   @Override
   public void initDefaultCommand() {
-    setDefaultCommand(new UpdateWinch());
+    //setDefaultCommand(new UpdateWinch());
   }
 }

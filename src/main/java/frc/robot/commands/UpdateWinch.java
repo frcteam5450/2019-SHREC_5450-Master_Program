@@ -13,8 +13,11 @@
 
 package frc.robot.commands;
 
+import javax.swing.text.StyleContext.SmallAttributeSet;
+
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Robot;
 import frc.robot.RobotMap;
 
@@ -37,9 +40,16 @@ public class UpdateWinch extends Command {
     double offset = Robot.winch.getRawSetPosition() - Robot.winch.getRawPosition();
     double power = offset * RobotMap.proportionControlValue;
     
-    if (Math.abs(Robot.winch.getSpeed()) < RobotMap.stopSpeed) {
-      Robot.winch.runWinch(0);
+      SmartDashboard.putNumber("Winch power set", power);
+
+    if (Math.abs(Robot.winch.getSpeed()) < RobotMap.stopSpeed && 
+    (Math.abs(power) < .1 && Robot.winch.getHeight() == RobotMap.lowerCargoPos)
+    || (Math.abs(power) < .37 && Robot.winch.getHeight() == RobotMap.middleCargoPos)
+    || (Math.abs(power) < .65 && Robot.winch.getHeight() == RobotMap.upperCargoPos)) {
       Robot.winch.brake();
+      try {Thread.sleep(10);}
+      catch (Exception e){ e.printStackTrace();}
+      Robot.winch.runWinch(0);
     }
     else {
       if (power < 0) {
