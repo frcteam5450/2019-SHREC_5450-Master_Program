@@ -55,6 +55,10 @@ public class Winch extends Subsystem {
     return winchMotor1.getSelectedSensorPosition();
   }
 
+  public double getSpeed() {
+    return winchMotor1.getSelectedSensorVelocity();
+  }
+
   public double getRawInitPosition() {
     return _rawInitPoint;
   }
@@ -96,6 +100,7 @@ public class Winch extends Subsystem {
     SmartDashboard.putNumber("Winch Raw Set Position", getRawSetPosition());
     SmartDashboard.putString("Winch Set Height", getHeight() + "inches");
     SmartDashboard.putNumber("Winch Raw Init Position", getRawInitPosition());
+    SmartDashboard.putNumber("Winch Raw speed", getSpeed());
 
     SmartDashboard.putBoolean("Disc Brake Value", discBrake.get());
   }

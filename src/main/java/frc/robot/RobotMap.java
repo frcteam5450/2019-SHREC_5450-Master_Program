@@ -69,7 +69,7 @@ public class RobotMap {
   //Winch Control Loop
   public static double countsPerInch = 1500;
   public static double proportionControlValue = .0001;
-  public static double lowerCargoPos = -.5;
+  public static double lowerCargoPos = 1;
   public static double middleCargoPos = 25;
   public static double upperCargoPos = 45;
 }
