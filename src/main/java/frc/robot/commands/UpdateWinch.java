@@ -13,6 +13,7 @@
 
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 import frc.robot.RobotMap;
@@ -32,17 +33,24 @@ public class UpdateWinch extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    double offset = Robot.winch.getRawSetPosition() - Robot.winch.getRawInitPosition();
+    if (!DriverStation.getInstance().isTest()) {
+    double offset = Robot.winch.getRawSetPosition() - Robot.winch.getRawPosition();
     double power = offset * RobotMap.proportionControlValue;
 
-    if (Math.abs(power) < .05) {
-      end();
+    
+
+    if (Math.abs(power) < .035) {
+      Robot.winch.runWinch(0);
       Robot.winch.brake();
     }
     else {
+      if (power < 0) {
+        power = power * .2 - .05;
+      }
       Robot.winch.releaseBrake();
       Robot.winch.runWinch(-power);
     }
+  }
   }
 
   // Make this return true when this Command no longer needs to run execute()

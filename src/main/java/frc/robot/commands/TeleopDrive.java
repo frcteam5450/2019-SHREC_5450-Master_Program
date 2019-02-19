@@ -58,12 +58,12 @@ public class TeleopDrive extends Command {
       double backPower = Functions.returnGreatestAbs(driver1.getX(Hand.kRight), driver2.getX(Hand.kRight));
 
       //rear motor power calculations
-      double backLeftPower = leftPower + backPower;
-      double backRightPower = rightPower - backPower;
+      double backLeftPower = leftPower;// + backPower;
+      double backRightPower = rightPower;// - backPower;
 
       //forward motor power calculations
-      double frontLeftPower = leftPower - frontPower;
-      double frontRightPower = rightPower + frontPower;
+      double frontLeftPower = leftPower;// - frontPower;
+      double frontRightPower = rightPower;// + frontPower;
 
       //pushes power variables to motors
       Robot.drivetrain.FourWheelDrive(backLeftPower, frontLeftPower, backRightPower, frontRightPower);

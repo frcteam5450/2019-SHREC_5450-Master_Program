@@ -29,17 +29,22 @@ import frc.robot.commands.UpdateCargoIntake;
  */
 public class Intake extends Subsystem {
   
+  //intake motor declaration
   private WPI_TalonSRX intakeMotor;
   
+  //cargoLife and hatchIntake solenoid declarations
   private DoubleSolenoid cargoLift;
   private Solenoid hatchIntake;
 
   public Intake() {
+    //intake motor definition
     intakeMotor = new WPI_TalonSRX(RobotMap.cargoIntakeMotor);
 
+    //cargoLift and hatchIntake solenoid definitions
     cargoLift = new DoubleSolenoid(RobotMap.upperPCMID, RobotMap.cargoLiftDown, RobotMap.cargoLiftUp);
     hatchIntake = new Solenoid(RobotMap.upperPCMID, RobotMap.hatchGrabber);
 
+    //resets the cargo lift to higher position when robot starts, if it's not already there.
     resetCargo();
   }
 
@@ -56,7 +61,7 @@ public class Intake extends Subsystem {
   }
 
   public void resetCargo() {
-    cargoLift.set(Value.kReverse);
+    cargoLift.set(Value.kForward);
     cargoLift.set(Value.kOff);
   }
 

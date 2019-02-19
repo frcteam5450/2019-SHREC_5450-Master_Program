@@ -51,6 +51,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.CameraServer;
 import frc.robot.OI;
 import frc.robot.commands.*;
 import frc.robot.subsystems.*;
@@ -68,6 +69,9 @@ public class Robot extends TimedRobot {
   public static Winch winch = new Winch();
   public static Intake intake = new Intake();
   
+  CameraServer leftCamera;
+  //CameraServer rightCamera;
+
   public static OI m_oi;
 
   Command m_autonomousCommand;
@@ -79,6 +83,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotInit() {
+    leftCamera.getInstance().addAxisCamera("10.54.50.3");
     m_oi = new OI();
     //m_chooser.setDefaultOption("Default Auto", new ExampleCommand());
     // chooser.addOption("My Auto", new MyAutoCommand());
@@ -111,6 +116,9 @@ public class Robot extends TimedRobot {
     intake.runCargoIntake(0);
     drivetrain.drive(0, 0);
     winch.runWinch(0);
+    intake.resetCargo();
+    intake.releaseHatch();
+    winch.setHeight(1.5);
   }
 
   @Override
@@ -163,6 +171,7 @@ public class Robot extends TimedRobot {
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
     }
+    
   }
 
   /**
@@ -172,7 +181,17 @@ public class Robot extends TimedRobot {
   public void teleopPeriodic() {
     Scheduler.getInstance().run();
 
-    /*if (OI.driveController.getBumper(Hand.kLeft)) {
+    
+
+    //Robot.intake.runCargoIntake(.5 * (OI.mechanismController.getTriggerAxis(Hand.kLeft) - OI.mechanismController.getTriggerAxis(Hand.kRight)));
+  }
+
+  /**
+   * This function is called periodically during test mode.
+   */
+  @Override
+  public void testPeriodic() {
+    if (OI.driveController.getBumper(Hand.kLeft)) {
       winch.releaseBrake();
       winch.runWinch(.25);
     }
@@ -183,15 +202,6 @@ public class Robot extends TimedRobot {
     else {
       winch.runWinch(0);
       winch.brake();
-    }*/
-
-    //Robot.intake.runCargoIntake(.5 * (OI.driveController.getTriggerAxis(Hand.kLeft) - OI.driveController.getTriggerAxis(Hand.kRight)));
-  }
-
-  /**
-   * This function is called periodically during test mode.
-   */
-  @Override
-  public void testPeriodic() {
+    }
   }
 }

@@ -37,9 +37,9 @@ public class RobotMap {
   public static int controller2 = 1;
 
   //Motor Power Multipliers
-  public static double drivePower = .65;
+  public static double drivePower = .75;
   public static double winchPower = .75;
-  public static double cargoIntakePower = .5;
+  public static double cargoIntakePower = .75;
 
   //Compressor Relay Channel
   public static int compressorRelay = 0;
@@ -50,8 +50,8 @@ public class RobotMap {
 
   //Solenoids
   public static int discBrake = 2;
-  public static int cargoLiftUp = 0;
-  public static int cargoLiftDown = 1;
+  public static int cargoLiftUp = 1;
+  public static int cargoLiftDown = 0;
   public static int hatchGrabber = 2;
 
   //Controller Mapping
@@ -68,8 +68,8 @@ public class RobotMap {
 
   //Winch Control Loop
   public static double countsPerInch = 1500;
-  public static double proportionControlValue = .001;
-  public static double lowerCargoPos = 36;
-  public static double middleCargoPos = 52;
-  public static double upperCargoPos = 84;
+  public static double proportionControlValue = .0001;
+  public static double lowerCargoPos = -.5;
+  public static double middleCargoPos = 25;
+  public static double upperCargoPos = 45;
 }

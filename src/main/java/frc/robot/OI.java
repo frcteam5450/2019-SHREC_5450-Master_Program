@@ -37,7 +37,7 @@ public class OI {
   Button start1 = new JoystickButton(driveController, RobotMap.start);
 
   //Mechanism driver button declarations
-  XboxController mechanismController = new XboxController(RobotMap.controller2);
+  public static final XboxController mechanismController = new XboxController(RobotMap.controller2);
   Button A2 = new JoystickButton(mechanismController, RobotMap.A);
   Button B2 = new JoystickButton(mechanismController, RobotMap.B);
   Button X2 = new JoystickButton(mechanismController, RobotMap.X);

@@ -75,6 +75,8 @@ public class Drivetrain extends Subsystem {
     SmartDashboard.putNumber("Front Left Motor", frontLeftMotor.getOutputCurrent());
     SmartDashboard.putNumber("Back Right Motor", backRightMotor.getOutputCurrent());
     SmartDashboard.putNumber("Front Right Motor", frontRightMotor.getOutputCurrent());
+
+    SmartDashboard.putNumber("Gyro Angle", gyro.getAngle());
   }
 
   @Override

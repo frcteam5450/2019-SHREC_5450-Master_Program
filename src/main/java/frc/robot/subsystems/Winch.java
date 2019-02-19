@@ -94,6 +94,8 @@ public class Winch extends Subsystem {
     
     SmartDashboard.putNumber("Winch Encoder Raw Position", getRawPosition());
     SmartDashboard.putNumber("Winch Raw Set Position", getRawSetPosition());
+    SmartDashboard.putString("Winch Set Height", getHeight() + "inches");
+    SmartDashboard.putNumber("Winch Raw Init Position", getRawInitPosition());
 
     SmartDashboard.putBoolean("Disc Brake Value", discBrake.get());
   }

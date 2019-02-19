@@ -31,7 +31,7 @@ public class UpdateCargoIntake extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    //
+    
     if (DriverStation.getInstance().isOperatorControl()) {
       double power = (controller.getTriggerAxis(Hand.kLeft) - controller.getTriggerAxis(Hand.kRight)) * RobotMap.cargoIntakePower;
 
