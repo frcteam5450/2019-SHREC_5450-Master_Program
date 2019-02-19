@@ -22,6 +22,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.RobotMap;
 import frc.robot.commands.UpdateCargoIntake;
+import edu.wpi.first.wpilibj.AnalogInput;
 
 /**
  * Class for intake mechanism, including both hatch mechanism and cargo intake, along with the pistons 
@@ -35,11 +36,12 @@ public class Intake extends Subsystem {
   //cargoLife and hatchIntake solenoid declarations
   private DoubleSolenoid cargoLift;
   private Solenoid hatchIntake;
+  private AnalogInput ultraSonicValue;
 
   public Intake() {
     //intake motor definition
     intakeMotor = new WPI_TalonSRX(RobotMap.cargoIntakeMotor);
-
+    ultraSonicValue = new AnalogInput(0);
     //cargoLift and hatchIntake solenoid definitions
     cargoLift = new DoubleSolenoid(RobotMap.upperPCMID, RobotMap.cargoLiftDown, RobotMap.cargoLiftUp);
     hatchIntake = new Solenoid(RobotMap.upperPCMID, RobotMap.hatchGrabber);
@@ -80,10 +82,14 @@ public class Intake extends Subsystem {
   public Value cargoLiftState() {
     return cargoLift.get();
   }
+  public Double ultrasonicValue() {
+    return ultraSonicValue.getAverageVoltage();
+  }
 
   public void displayStats() {
     SmartDashboard.putNumber("Intake Motor Current", intakeMotor.getOutputCurrent());
     SmartDashboard.putBoolean("Hatch Grabber Value", hatchIntake.get());
+    SmartDashboard.putNumber("Ultra Sonic Sensor Value", ultrasonicValue());
     
     String cargoLiftState;
 
