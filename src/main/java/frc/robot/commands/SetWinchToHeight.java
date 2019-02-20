@@ -35,23 +35,18 @@ public class SetWinchToHeight extends Command {
     Robot.winch.setHeight(_height);
     if (!DriverStation.getInstance().isTest()) {
       double offset = Robot.winch.getRawSetPosition() - Robot.winch.getRawPosition();
+      double speed = Robot.winch.getSpeed() / 600;
       double power = offset * RobotMap.proportionControlValue;
-      
-        SmartDashboard.putNumber("Winch power set", power);
-  
-      if (Math.abs(Robot.winch.getSpeed()) < RobotMap.stopSpeed && 
-      ((Math.abs(power) < .15 && Robot.winch.getHeight() == RobotMap.lowerCargoPos)
-      || (Math.abs(power) < .37 && Robot.winch.getHeight() == RobotMap.middleCargoPos)
-      || (Math.abs(power) < .65 && Robot.winch.getHeight() == RobotMap.upperCargoPos))) {
+
+      if (Math.abs(speed) < Math.abs(power)) {
+        double speedOffset = power - speed;
+        power = power + speedOffset;
+      }
+
+      if (Math.abs(power) < 0.1) {
         _end = true;
       }
-      else {
-        if (power < 0) {
-          power = power * .2 - .05;
-        }
-        Robot.winch.releaseBrake();
-        Robot.winch.runWinch(-power);
-      }
+      
     }
   }
 
@@ -66,7 +61,7 @@ public class SetWinchToHeight extends Command {
   protected void end() {
     Robot.winch.runWinch(0);
     Robot.winch.brake();
-    SmartDashboard.putBoolean("IsFinished?", true);
+    //SmartDashboard.putBoolean("IsFinished?", true);
   }
 
   // Called when another command which requires one or more of the same
