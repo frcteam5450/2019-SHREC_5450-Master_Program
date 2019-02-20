@@ -53,6 +53,8 @@ public class RobotMap {
   public static int cargoLiftUp = 1;
   public static int cargoLiftDown = 0;
   public static int hatchGrabber = 2;
+  public static int forwardClimb = 1;
+  public static int rearClimb = 0;
 
   //Controller Mapping
   public static int A = 1;
@@ -70,9 +72,9 @@ public class RobotMap {
   public static double countsPerInch = 1500;
   public static double proportionControlValue = .0001;
   public static double stopSpeed = 100;
-  public static double lowerCargoPos = .25;
+  public static double lowerCargoPos = .5;
   public static double middleCargoPos = 25;
-  public static double upperCargoPos = 47;
+  public static double upperCargoPos = 43.5;
   public static double cargoShipCargoPos = 20;
   public static double lowerHatchPos = 8;
   public static double middleHatchPos = 22;

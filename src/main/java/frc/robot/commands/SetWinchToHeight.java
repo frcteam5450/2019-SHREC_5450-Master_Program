@@ -16,6 +16,7 @@ import frc.robot.RobotMap;
 public class SetWinchToHeight extends Command {
   private double _height;
   private boolean _end = false;
+  private boolean firstRun = true;
 
   public SetWinchToHeight(double height) {
     requires(Robot.winch);
@@ -26,6 +27,7 @@ public class SetWinchToHeight extends Command {
   @Override
   protected void initialize() {
     Robot.winch.setHeight(_height);
+    firstRun = true;
   }
 
   // Called repeatedly when this Command is scheduled to run
@@ -38,15 +40,20 @@ public class SetWinchToHeight extends Command {
       double speed = Robot.winch.getSpeed() / 600;
       double power = offset * RobotMap.proportionControlValue;
 
-      if (Math.abs(speed) < Math.abs(power)) {
+      SmartDashboard.putNumber("Winc power set", power);
+
+      if (Math.abs(speed) < Math.abs(power) && !firstRun) {
         double speedOffset = power - speed;
         power = power + speedOffset;
       }
 
-      if (Math.abs(power) < 0.1) {
+      Robot.winch.releaseBrake();
+      Robot.winch.runWinch(-power);
+
+      if (Math.abs(power) < 0.25) {
         _end = true;
       }
-      
+      firstRun = false;
     }
   }
 

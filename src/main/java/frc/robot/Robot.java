@@ -74,9 +74,10 @@ public class Robot extends TimedRobot {
   public static Winch winch = new Winch();
   public static Intake intake = new Intake();
   public static PDP pdp = new PDP();
+  public static Climber climber = new Climber();
   
-  CameraServer leftCamera;
-  //CameraServer rightCamera;
+  //CameraServer leftCamera;
+  CameraServer rightCamera;
 
   public static OI m_oi;
 
@@ -89,7 +90,8 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotInit() {
-    leftCamera.getInstance().addAxisCamera("10.54.50.3");
+    rightCamera.getInstance().addAxisCamera("10.54.50.4");
+    //rightCamera.getInstance().startAutomaticCapture();
     m_oi = new OI();
     //m_chooser.setDefaultOption("Default Auto", new ExampleCommand());
     // chooser.addOption("My Auto", new MyAutoCommand());
@@ -201,7 +203,7 @@ public class Robot extends TimedRobot {
   public void testPeriodic() {
     if (OI.driveController.getBumper(Hand.kLeft)) {
       winch.releaseBrake();
-      winch.runWinch(.25);
+      winch.runWinch(.15);
     }
     else if (OI.driveController.getBumper(Hand.kRight)) {
       winch.releaseBrake();

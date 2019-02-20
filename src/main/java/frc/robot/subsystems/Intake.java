@@ -89,7 +89,11 @@ public class Intake extends Subsystem {
   public void displayStats() {
     SmartDashboard.putNumber("Intake Motor Current", intakeMotor.getOutputCurrent());
     SmartDashboard.putBoolean("Hatch Grabber Value", hatchIntake.get());
-    SmartDashboard.putNumber("Ultra Sonic Sensor Value", ultrasonicValue());
+    boolean ballIn;
+    if (ultrasonicValue() < 0.34) ballIn = true;
+    else ballIn = false;
+
+    SmartDashboard.putBoolean("Ball In Cargo Intake?", ballIn);
     
     String cargoLiftState;
 

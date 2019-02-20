@@ -56,5 +56,8 @@ public class OI {
 
     RB2.whenPressed(new ToggleCargoLift());
     LB2.whenPressed(new ToggleHatchIntake());
+
+    Y1.whenPressed(new ToggleForwardClimb());
+    A1.whenPressed(new ToggleRearClimb());
   }
 }
