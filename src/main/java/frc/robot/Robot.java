@@ -11,6 +11,12 @@
  * Evan Garrison
  */
 
+/** 
+ * March 8, 2019 | Version 0.1.6 | Auburn Competition Load Day Code
+ * 
+ * -all subsystems are usable, all hatch and cargo heights are programmed.
+ */
+
 /**
  * February 18, 2019 | Version 0.1.5 | Bag Day Code
  */

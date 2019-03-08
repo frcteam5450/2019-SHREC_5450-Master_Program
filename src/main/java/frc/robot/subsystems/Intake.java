@@ -36,6 +36,8 @@ public class Intake extends Subsystem {
   //cargoLife and hatchIntake solenoid declarations
   private DoubleSolenoid cargoLift;
   private Solenoid hatchIntake;
+
+  private AnalogInput liftSensor;
   private AnalogInput ultraSonicValue;
 
   public Intake() {
@@ -45,6 +47,8 @@ public class Intake extends Subsystem {
     //cargoLift and hatchIntake solenoid definitions
     cargoLift = new DoubleSolenoid(RobotMap.upperPCMID, RobotMap.cargoLiftDown, RobotMap.cargoLiftUp);
     hatchIntake = new Solenoid(RobotMap.upperPCMID, RobotMap.hatchGrabber);
+
+    liftSensor = new AnalogInput(RobotMap.liftSensor);
 
     //resets the cargo lift to higher position when robot starts, if it's not already there.
     resetCargo();
@@ -86,9 +90,16 @@ public class Intake extends Subsystem {
     return ultraSonicValue.getAverageVoltage();
   }
 
+  public double getLiftSensorValue() {
+    return liftSensor.getVoltage();
+  }
+
   public void displayStats() {
     SmartDashboard.putNumber("Intake Motor Current", intakeMotor.getOutputCurrent());
     SmartDashboard.putBoolean("Hatch Grabber Value", hatchIntake.get());
+
+    SmartDashboard.putNumber("Lift Sensor", getLiftSensorValue());
+
     boolean ballIn;
     if (ultrasonicValue() < 0.34) ballIn = true;
     else ballIn = false;

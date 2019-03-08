@@ -82,4 +82,5 @@ public class RobotMap {
 
   //AIO and DIO ports
   public static int upperUltraSonicSensor = 0;
+  public static int liftSensor = 1;
 }
