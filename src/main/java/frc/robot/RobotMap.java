@@ -74,11 +74,11 @@ public class RobotMap {
   public static double stopSpeed = 100;
   public static double lowerCargoPos = .5;
   public static double middleCargoPos = 25;
-  public static double upperCargoPos = 43.5;
+  public static double upperCargoPos = 43;
   public static double cargoShipCargoPos = 20;
   public static double lowerHatchPos = 8;
-  public static double middleHatchPos = 22;
-  public static double upperHatchPos = 42;
+  public static double middleHatchPos = 20;
+  public static double upperHatchPos = 40;
 
   //AIO and DIO ports
   public static int upperUltraSonicSensor = 0;

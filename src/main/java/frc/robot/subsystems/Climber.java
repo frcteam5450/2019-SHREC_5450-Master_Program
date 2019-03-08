@@ -20,8 +20,8 @@ public class Climber extends Subsystem {
   private Solenoid forwardClimb;
 
   public Climber() {
-    rearClimb = new Solenoid(RobotMap.rearClimb);
-    forwardClimb = new Solenoid(RobotMap.forwardClimb);
+    rearClimb = new Solenoid(RobotMap.primaryPCMID,RobotMap.rearClimb);
+    forwardClimb = new Solenoid(RobotMap.primaryPCMID, RobotMap.forwardClimb);
   }
 
   public void rearClimb() {

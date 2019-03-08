@@ -23,7 +23,7 @@ public class ToggleForwardClimb extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    if (Robot.climber.getForwardClimb()) {
+    if (!Robot.climber.getForwardClimb()) {
       Robot.climber.forwardClimb();
     }
     else {

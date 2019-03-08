@@ -77,7 +77,7 @@ public class Robot extends TimedRobot {
   public static Climber climber = new Climber();
   
   //CameraServer leftCamera;
-  CameraServer rightCamera;
+  //CameraServer rightCamera;
 
   public static OI m_oi;
 
@@ -90,7 +90,8 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotInit() {
-    rightCamera.getInstance().addAxisCamera("10.54.50.4");
+    //leftCamera.addAxisCamera("Left Camera", "10.54.50.4");
+    //rightCamera.addAxisCamera("Right Camera", "10.54.50.3");
     //rightCamera.getInstance().startAutomaticCapture();
     m_oi = new OI();
     //m_chooser.setDefaultOption("Default Auto", new ExampleCommand());
