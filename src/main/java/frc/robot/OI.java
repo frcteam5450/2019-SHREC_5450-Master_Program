@@ -53,6 +53,7 @@ public class OI {
     A2.whenPressed(new SetWinchToHeight(RobotMap.lowerCargoPos));
     B2.whenPressed(new SetWinchToHeight(RobotMap.middleCargoPos));
     Y2.whenPressed(new SetWinchToHeight(RobotMap.upperCargoPos));
+    X2.whenPressed(new SetWinchToHeight(RobotMap.cargoShipCargoPos));
 
     RB2.whenPressed(new ToggleCargoLift());
     LB2.whenPressed(new ToggleHatchIntake());

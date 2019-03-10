@@ -115,12 +115,12 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotPeriodic() {
-    drivetrain.displayStats();
+    //drivetrain.displayStats();
     winch.displayStats();
     intake.displayStats();
     compressor.displayStats();
-    pdp.displayStats();
-    Functions.reportRobotStatus();
+    //pdp.displayStats();
+    //Functions.reportRobotStatus();
   }
 
   /**

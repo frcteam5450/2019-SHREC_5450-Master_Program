@@ -47,7 +47,7 @@ public class TeleopDrive extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    if (DriverStation.getInstance().isOperatorControl()) {
+    if (DriverStation.getInstance().isEnabled()) {
 
       //gets input from controller for normal driving
       double leftPower = Functions.returnGreatestAbs(driver1.getY(Hand.kLeft), driver2.getY(Hand.kLeft)) * RobotMap.drivePower;

@@ -75,8 +75,8 @@ public class RobotMap {
   public static double lowerCargoPos = .5;
   public static double middleCargoPos = 25;
   public static double upperCargoPos = 43;
-  public static double cargoShipCargoPos = 20;
-  public static double lowerHatchPos = 8;
+  public static double cargoShipCargoPos = 16;
+  public static double lowerHatchPos = 10;
   public static double middleHatchPos = 20;
   public static double upperHatchPos = 40;
 

@@ -40,7 +40,7 @@ public class DPadMap extends Command {
         break;
         case 90: _height = RobotMap.middleHatchPos;
         break;
-        case 180: _height = RobotMap.lowerCargoPos;
+        case 180: _height = RobotMap.lowerHatchPos;
         break;
         default:
         _height = -1;
