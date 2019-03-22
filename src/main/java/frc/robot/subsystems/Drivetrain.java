@@ -43,6 +43,8 @@ public class Drivetrain extends Subsystem {
 
     //gyroscope definition
     gyro = new ADXRS450_Gyro();
+
+    
   }
 
   //Normal drive method
@@ -77,6 +79,18 @@ public class Drivetrain extends Subsystem {
     SmartDashboard.putNumber("Front Right Motor", frontRightMotor.getOutputCurrent());
 
     SmartDashboard.putNumber("Gyro Angle", gyro.getAngle());
+  }
+
+  public void resetGyro() {
+    gyro.reset();
+  }
+
+  public void claibrateGyro() {
+    gyro.calibrate();
+  }
+
+  public double getAngle() {
+    return gyro.getAngle();
   }
 
   @Override

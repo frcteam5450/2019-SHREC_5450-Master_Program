@@ -100,8 +100,8 @@ public class Robot extends TimedRobot {
     //rightCamera.addAxisCamera("Right Camera", "10.54.50.3");
     //rightCamera.getInstance().startAutomaticCapture();
     m_oi = new OI();
-    //m_chooser.setDefaultOption("Default Auto", new ExampleCommand());
-    // chooser.addOption("My Auto", new MyAutoCommand());
+    m_chooser.setDefaultOption("Default Auto - Nothing", new ExampleCommand());
+    m_chooser.addOption("ReleaseClip", new ReleaseClip());
     SmartDashboard.putData("Auto mode", m_chooser);
   }
 
