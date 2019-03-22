@@ -93,6 +93,10 @@ public class Drivetrain extends Subsystem {
     return gyro.getAngle();
   }
 
+  public double getTurnRate() {
+    return gyro.getRate();
+  }
+
   @Override
   public void initDefaultCommand() {
     //Default Command is driver controller of robot.

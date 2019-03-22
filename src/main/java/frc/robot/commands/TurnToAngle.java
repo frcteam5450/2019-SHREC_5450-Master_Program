@@ -7,21 +7,17 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class DriveForward extends Command {
+public class TurnToAngle extends Command {
 
-  private Timer timer;
-  private double _time;
-  private double _power;
-  private double _gain;
+  double _angle;
+  double _gain;
 
-  public DriveForward(double time, double power, double gain) {
+  public TurnToAngle(double angle, double gain) {
     requires(Robot.drivetrain);
-    _time = time;
-    _power = power;
+    _angle = angle;
     _gain = gain;
   }
 
@@ -29,33 +25,30 @@ public class DriveForward extends Command {
   @Override
   protected void initialize() {
     Robot.drivetrain.resetGyro();
-    timer = new Timer();
-    timer.start();
-    timer.reset();
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    double correction = Robot.drivetrain.getAngle() * _gain;
+    double power = _angle - (Robot.drivetrain.getAngle() * _gain);
 
-    Robot.drivetrain.drive(_power, _power - correction);
+    Robot.drivetrain.drive(power, -power);
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    if (timer.get() < _time) {
-      return false;
+    if (Robot.drivetrain.getTurnRate() < 5) {
+      return true;
     }
-    else return true;
+    else return false;
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    timer.stop();
     Robot.drivetrain.drive(0, 0);
+    Robot.drivetrain.resetGyro();
   }
 
   // Called when another command which requires one or more of the same
